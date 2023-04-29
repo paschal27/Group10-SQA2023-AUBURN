@@ -7,6 +7,8 @@ Parser to file YAML files
 import yaml
 import constants 
 
+#Test00
+
 def checkIfWeirdYAML(yaml_script):
     '''
     to filter invalid YAMLs such as ./github/workflows/ 
