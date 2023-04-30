@@ -8,7 +8,12 @@ import parser
 import os 
 from itertools import combinations
 
+import logging_file #logging file import
+
+logObj = logging_file.LoggingObject()
+
 def getYAMLFiles(path_to_dir):
+    logObj.info('checking getYAMLFiles function. To make sure that correct file is gotten from directory') #Log 1
     valid_  = [] 
     for root_, dirs, files_ in os.walk( path_to_dir ):
        for file_ in files_:
@@ -33,8 +38,8 @@ def getHelmTemplateContent( templ_dir ):
         template_content_dict[template_yaml_file] = value_as_str
     return template_content_dict 
 
-
 def getMatchingTemplates(path2script, hierarchy_ls):
+    logObj.info('checking getMatchingTemplates function. Check for matching templates') #Log 2
     templ_list = [] 
     template_content_dict, helm_string_list = {}, []
     templateDirOfHelmValues = os.path.dirname( path2script )  + constants.TEMPLATES_DIR_KW 
@@ -72,6 +77,7 @@ def mineSecretGraph( path2script, yaml_dict , secret_dict ):
     Need to provide script path, script dict, dictionary of secrets that appear for the script  
     '''
 
+    logObj.info('checking mineSecretGraph function. make sure function looks at YAML files in Helm templates')#Log 3
     within_match_head = None 
     hierarchy_list = []
     for k_, v_ in secret_dict.items():
